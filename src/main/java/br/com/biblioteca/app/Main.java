@@ -1,9 +1,6 @@
 package br.com.biblioteca.app;
 
-import br.com.biblioteca.model.Aluno;
-import br.com.biblioteca.model.Livro;
-import br.com.biblioteca.model.Professor;
-import br.com.biblioteca.model.Revista;
+import br.com.biblioteca.model.*;
 import br.com.biblioteca.service.Biblioteca;
 
 public class Main {
@@ -40,6 +37,13 @@ public class Main {
 
         System.out.println("\n==== NOVO EMPRÉSTIMO ====");
         biblioteca.emprestar("R002", aluno);
+        biblioteca.listarAcervo();
+
+        System.out.println("\n==== TESTE DE NOVA CATEGORIA ====");
+        DVD dvd = new DVD("D001", "Revolução Tecnológica");
+        biblioteca.cadastrarItem(dvd);
+        biblioteca.emprestar("D001", professor);
+        biblioteca.devolver("D001", 3);
         biblioteca.listarAcervo();
     }
 }
