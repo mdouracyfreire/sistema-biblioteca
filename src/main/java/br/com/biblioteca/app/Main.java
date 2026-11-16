@@ -1,40 +1,45 @@
 package br.com.biblioteca.app;
 
 import br.com.biblioteca.model.Aluno;
+import br.com.biblioteca.model.Livro;
 import br.com.biblioteca.model.Professor;
-import br.com.biblioteca.model.Usuario;
+import br.com.biblioteca.model.Revista;
+import br.com.biblioteca.service.Biblioteca;
 
 public class Main {
     public static void main(String[] args) {
-        Usuario aluno = new Aluno("Dora");
-        Usuario professor = new Professor("Bruno");
+        Biblioteca biblioteca = new Biblioteca();
+        Aluno aluno = new Aluno("Dora");
+        Professor professor = new Professor("Astrid");
 
-        System.out.println("==== TESTE DE USUÁRIOS ====");
+        System.out.println("==== CADASTRO DE USUÁRIOS ====");
+        biblioteca.cadastrarUsuario(aluno);
+        biblioteca.cadastrarUsuario(professor);
 
-        System.out.println("\nALUNO");
-        System.out.println("Nome: " + aluno.getNome());
-        System.out.println("Limite: " + aluno.getLimiteItens());
+        System.out.println("\n==== CADASTRO DE ITENS ====");
+        biblioteca.cadastrarItem(new Livro("L001", "Java: Como Programar"));
+        biblioteca.cadastrarItem(new Livro("L002", "Clean Code"));
+        biblioteca.cadastrarItem(new Livro("L003", "Design Patterns"));
+        biblioteca.cadastrarItem(new Revista("R001", "Revista Veja"));
+        biblioteca.cadastrarItem(new Revista("R002", "Ciência Hoje"));
+        biblioteca.listarAcervo();
 
-        aluno.registrarEmprestimo();
-        aluno.registrarEmprestimo();
-        aluno.registrarEmprestimo();
+        System.out.println("\n==== EMPRÉSTIMOS ====");
+        biblioteca.emprestar("L001", aluno);
+        biblioteca.emprestar("L002", aluno);
+        biblioteca.emprestar("L003", aluno);
 
-        System.out.println("Itens emprestados: " + aluno.getQuantidadeEmprestada());
-        System.out.println("Pode emprestar outro? " + aluno.podeEmprestar());
+        System.out.println("\n==== TESTE DE LIMITE ====");
+        biblioteca.emprestar("R001", aluno);
 
-        System.out.println("\nPROFESSOR");
-        System.out.println("Nome: " + professor.getNome());
-        System.out.println("Limite: " + professor.getLimiteItens());
+        System.out.println("\n==== EMPRÉSTIMO PARA PROFESSOR ====");
+        biblioteca.emprestar("R001", professor);
 
-        professor.registrarEmprestimo();
+        System.out.println("\n==== DEVOLUÇÃO COM ATRASO ====");
+        biblioteca.devolver("L001", 4);
 
-        System.out.println("Itens emprestados: " + professor.getQuantidadeEmprestada());
-        System.out.println("Pode emprestar outro? " + professor.podeEmprestar());
-
-        System.out.println("\nTESTE DE DEVOLUÇÃO");
-        aluno.registrarDevolucao();
-
-        System.out.println("Itens do aluno após a devolução: " + aluno.getQuantidadeEmprestada());
-        System.out.println("Pode emprestar novamente? " + aluno.podeEmprestar());
+        System.out.println("\n==== NOVO EMPRÉSTIMO ====");
+        biblioteca.emprestar("R002", aluno);
+        biblioteca.listarAcervo();
     }
 }
