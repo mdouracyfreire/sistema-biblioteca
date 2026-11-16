@@ -569,8 +569,6 @@ O repositório está disponível para consulta e como referência de estudo, dem
 
 Desenvolvido com 💛 por **Douracy Freire**
 
-<br>
-
 <a href="https://github.com/mdouracyfreire">
   <img src="https://img.shields.io/badge/GitHub-Douracy%20Freire-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub - Douracy Freire">
 </a>
